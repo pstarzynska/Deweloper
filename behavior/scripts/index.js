@@ -1,7 +1,6 @@
 'use strict'
 
-exports.handle = (client) => {
-  // Create steps
+exports.handle = function handle(client) {
   const sayHello = client.createStep({
     satisfied() {
       return Boolean(client.getConversationState().helloSent)
@@ -10,14 +9,11 @@ exports.handle = (client) => {
     prompt() {
       client.addResponse('welcome')
       client.addResponse('provide/documentation', {
-        documentation_link: 'http://docs.init.ai',
+        documentation_link: 'http://novaatmosfera.pl',
       })
-      client.addResponse('provide/instructions')
-
       client.updateConversationState({
         helloSent: true
       })
-
       client.done()
     }
   })
@@ -29,47 +25,43 @@ exports.handle = (client) => {
 
     prompt() {
       client.addResponse('apology/untrained')
-      client.done()
+     client.done()
     }
   })
 
   const handleGreeting = client.createStep({
-  satisfied() {
-    return false
-  },
+    satisfied() {
+      return false
+    },
 
-  prompt() {
-    client.addResponse('greeting')
-    client.done()
-  }
-})
-  
+    prompt() {
+      client.addResponse('greeting')
+      client.done()
+    }
+  })
+
   const handleGoodbye = client.createStep({
-  satisfied() {
-    return false
-  },
+    satisfied() {
+      return false
+    },
 
-  prompt() {
-    client.addResponse('goodbye')
-    client.done()
-  }
-})
-  
+    prompt() {
+      client.addResponse('goodbye')
+     client.done()
+    }
+  })
+
   client.runFlow({
     classifications: {
-      // map inbound message classifications to names of streams
-	  goodbye: 'goodbye'
-	  greeting: 'greeting'
-    },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
+      goodbye: 'goodbye',
+      greeting: 'greeting'
     },
     streams: {
       goodbye: handleGoodbye,
-	  greeting: handleGreeting,
-	  main: 'onboarding',
+      greeting: handleGreeting,
+      main: 'onboarding',
       onboarding: [sayHello],
-      end: [untrained],
-    },
+      end: [untrained]
+    }
   })
 }
