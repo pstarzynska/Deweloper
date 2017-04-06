@@ -1,18 +1,18 @@
-Hello.
+Witam
 * greeting
 
-< Hello world!
+< Witam
 * welcome
 
-< I don't know much yet, but if you need some pointers on where to get started you should check out the docs -
-[http://docs.init.ai](documentation_link)
+< Więcej informacji na temat inwestycji znajdziesz na 
+[http://novaatmosfera.pl](documentation_link)
 * provide/documentation
 
 < Otherwise, head over to Teach (up at the top) and start teaching me!
 * provide/instructions
 
-Are you human?
+Czy jesteś człowiekiem?
 * turing/human
 
-< Apologies, but this app needs to go back to school!
+< Przepraszam, nie rozumiem pytania. Czy możesz sformułować inaczej?
 * apology/untrained
